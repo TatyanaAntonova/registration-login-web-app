@@ -14,7 +14,7 @@ import java.util.Set;
 
 public  class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -31,8 +31,11 @@ public  class User {
     private String password;
 
     @NonNull
+    @Transient
     private String confirmedPassword;
 
     @NonNull
-    private Set<Role> roles;
+    //@ManyToMany(fetch = FetchType.EAGER)
+    //private Set<Role> roles;
+    private Role role;
 }
