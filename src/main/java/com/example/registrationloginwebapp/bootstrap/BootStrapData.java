@@ -6,7 +6,7 @@ import com.example.registrationloginwebapp.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-//TODO @Component
+@Component
 public class BootStrapData implements CommandLineRunner {
     private final UserRepository userRepository;
 
