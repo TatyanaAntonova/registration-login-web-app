@@ -4,9 +4,9 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class RoleConverter implements AttributeConverter<Role, String> {
+public class RoleConverter implements AttributeConverter<RoleEnum, String> {
     @Override
-    public String convertToDatabaseColumn(Role role) {
+    public String convertToDatabaseColumn(RoleEnum role) {
         switch (role) {
             case ADMIN:
                 return "admin";
@@ -18,16 +18,14 @@ public class RoleConverter implements AttributeConverter<Role, String> {
     }
 
     @Override
-    public Role convertToEntityAttribute(String dbData) {
+    public RoleEnum convertToEntityAttribute(String dbData) {
         switch (dbData) {
             case "admin":
-                return Role.ADMIN;
+                return RoleEnum.ADMIN;
             case "guest":
-                return Role.GUEST;
+                return RoleEnum.GUEST;
             default:
                 throw new IllegalArgumentException("Unexpected value of dbData: " + dbData);
         }
     }
-
-
 }

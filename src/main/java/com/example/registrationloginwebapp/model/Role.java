@@ -1,11 +1,31 @@
 package com.example.registrationloginwebapp.model;
 
-import javax.persistence.*;
+import lombok.*;
 
-@Convert(converter = RoleConverter.class, attributeName = "value")
-public enum Role {
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "roles")
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(of = {"id"})
+public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @NonNull
     @Enumerated(EnumType.STRING)
-    ADMIN,
-    @Enumerated(EnumType.STRING)
-    GUEST
+    private RoleEnum roleEnum;
+
+    @NonNull
+    //TODO
+    private String rights;
+
+    //@ManyToMany(mappedBy = "roles")
+    //private Set<User> userSet;
 }
