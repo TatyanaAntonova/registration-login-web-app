@@ -3,7 +3,7 @@ package com.example.registrationloginwebapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,10 +11,10 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode(of = {"roleEnum"})
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -26,6 +26,6 @@ public class Role {
     //TODO
     private String rights;
 
-    //@ManyToMany(mappedBy = "roles")
-    //private Set<User> userSet;
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 }

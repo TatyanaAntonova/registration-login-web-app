@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString(of = {"firstName", "lastName", "email"})
-@EqualsAndHashCode(of = {"email"})
+@EqualsAndHashCode(of = {"id"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,11 +37,9 @@ public class User {
     private String confirmedPassword;
 
     @NonNull
-    @Enumerated(EnumType.STRING)
-    private RoleEnum roleEnum;
-
-    //@ManyToMany(fetch = FetchType.EAGER)
-    //@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-
-   //private Set<Role> roles;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = ""))
+    private Set<Role> roles;
 }
