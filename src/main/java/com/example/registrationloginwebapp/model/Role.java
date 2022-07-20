@@ -3,7 +3,6 @@ package com.example.registrationloginwebapp.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,7 +13,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = {"roleEnum"})
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 

@@ -28,8 +28,10 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Starting in BootStrap");
 
         Set<Role> roles = new HashSet<>();
-        roles.add(new Role(RoleEnum.ADMIN, "admin rights"));
-        roles.add(new Role(RoleEnum.GUEST, "guest rights"));
+        System.out.println(roles.add(new Role(RoleEnum.ADMIN, "admin rights")));
+        System.out.println(roles.add(new Role(RoleEnum.GUEST, "guest rights")));
+        System.out.println(roles.add(new Role(RoleEnum.GUEST, "guest's rights")));
+
         System.out.println(roles.size());
 
         User user = new User("Ivan", "Petrov", "email", "password", "confirmedPassword", roles);
