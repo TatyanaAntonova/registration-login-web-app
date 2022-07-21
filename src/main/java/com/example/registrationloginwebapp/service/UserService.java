@@ -1,12 +1,11 @@
 package com.example.registrationloginwebapp.service;
 
-import com.example.registrationloginwebapp.dto.UserDto;
 import com.example.registrationloginwebapp.model.User;
 
 public interface UserService {
-    User save(UserDto userDto);
+    boolean save(User user);
 
-    User update(UserDto userDto);
+    boolean update(User user);
 
     boolean delete(User user);
 }

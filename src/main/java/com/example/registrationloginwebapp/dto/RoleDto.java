@@ -1,5 +1,6 @@
 package com.example.registrationloginwebapp.dto;
 
+import com.example.registrationloginwebapp.model.RoleEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -8,15 +9,9 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class RoleDto {
     @NonNull
-    private String firstName;
+    private RoleEnum roleEnum;
     @NonNull
-    private String lastName;
-    @NonNull
-    private String email;
-    @NonNull
-    private String password;
-    @NonNull
-    private String confirmedPassword;
+    private String rights;
 }

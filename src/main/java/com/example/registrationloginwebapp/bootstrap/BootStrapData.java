@@ -1,53 +1,55 @@
 package com.example.registrationloginwebapp.bootstrap;
 
-import com.example.registrationloginwebapp.model.Role;
-import com.example.registrationloginwebapp.model.RoleEnum;
+import com.example.registrationloginwebapp.dto.UserDto;
 import com.example.registrationloginwebapp.model.User;
-import com.example.registrationloginwebapp.repository.RoleRepository;
-import com.example.registrationloginwebapp.repository.UserRepository;
+import com.example.registrationloginwebapp.service.RoleService;
+import com.example.registrationloginwebapp.service.RoleServiceImpl;
+import com.example.registrationloginwebapp.service.UserServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 @Component
 public class BootStrapData implements CommandLineRunner {
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+    private final UserServiceImpl userServiceImpl;
+    private final RoleServiceImpl roleServiceIml;
 
-    public BootStrapData(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+    public BootStrapData(UserServiceImpl userServiceImpl, RoleServiceImpl roleService) {
+        this.userServiceImpl = userServiceImpl;
+        this.roleServiceIml = roleService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Starting in BootStrap");
 
-        Set<Role> roles = new HashSet<>();
-        System.out.println(roles.add(new Role(RoleEnum.ADMIN, "admin rights")));
-        System.out.println(roles.add(new Role(RoleEnum.GUEST, "guest rights")));
-        System.out.println(roles.add(new Role(RoleEnum.GUEST, "guest's rights")));
+        System.out.println("----------------- Download roles into repo");
+        roleServiceIml.setDefaultRoles();
+        System.out.println("There are " + roleServiceIml.getRoles().size() + " roles in repo.");
 
-        System.out.println(roles.size());
+        System.out.println("----------------- Create DTO taken from web");
+        UserDto userDto = new UserDto("Ivan", "Petrov", "email", "password123", "password123");
+        UserDto userDto2 = new UserDto("Ivan", "Petrov", "email1", "password123", "password123");
+        UserDto userDto3 = new UserDto("Ivan", "Petrov", "email111", "password123", "password123");
 
-        User user = new User("Ivan", "Petrov", "email", "password", "confirmedPassword", roles);
-        User user2 = new User("Ivan", "Petrov", "email2", "password", "confirmedPassword", roles);
-        User user3 = new User("Ivan", "Petrov", "email3", "password", "confirmedPassword", roles);
+        System.out.println("----------------- Transform DTO into User");
+        User user = userServiceImpl.transformDtoIntoUser(userDto);
+        User user2 = userServiceImpl.transformDtoIntoUser(userDto2);
+        User user3 = userServiceImpl.transformDtoIntoUser(userDto3);
 
-        List<User> userList = new ArrayList<>();
-        userList.add(user);
-        userList.add(user2);
-        userList.add(user3);
+        System.out.println("----------------- Download Users into repo");
+        userServiceImpl.save(user);
+        user2.setRoles(roleServiceIml.getRoles());
+        userServiceImpl.save(user2);
+        userServiceImpl.save(user2);
 
-        userRepository.saveAll(userList);
+        System.out.println("There is/are " + userServiceImpl.getUsers().size() + " user/users in repo.");
 
-        System.out.println(userRepository.count());
+        System.out.println("----------------- Delete User from repository");
+        if (userServiceImpl.delete(user)) System.out.println("User was deleted successfully!");
+        if (userServiceImpl.delete(user3)) System.out.println("User was deleted successfully!");
 
-        System.out.println(roleRepository.count());
+        System.out.println("There is/are " + userServiceImpl.getUsers().size() + " user/users in repo.");
+
         /*
         SELECT * FROM ROLES;
         SELECT * FROM USERS;
