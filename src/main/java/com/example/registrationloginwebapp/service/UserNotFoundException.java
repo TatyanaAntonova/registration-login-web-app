@@ -1,7 +1,7 @@
 package com.example.registrationloginwebapp.service;
 
-public class UserNotFountException extends RuntimeException{
-    public UserNotFountException(String email){
+public class UserNotFoundException extends RuntimeException{
+    public UserNotFoundException(String email){
         super(String.format("User with email %email was not found.", email));
     };
 }

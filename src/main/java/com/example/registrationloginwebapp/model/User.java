@@ -1,5 +1,8 @@
 package com.example.registrationloginwebapp.model;
 
+import com.example.registrationloginwebapp.validator.PasswordMatches;
+import com.example.registrationloginwebapp.validator.ValidEmail;
+import com.example.registrationloginwebapp.validator.ValidPassword;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,9 +30,11 @@ public class User {
     private String lastName;
 
     @NonNull
+    @ValidEmail
     private String email;
 
     @NonNull
+    @ValidPassword
     private String password;
 
     @NonNull
