@@ -2,41 +2,39 @@ package com.example.registrationloginwebapp.service;
 
 import com.example.registrationloginwebapp.dto.UserDto;
 import com.example.registrationloginwebapp.model.Role;
-import com.example.registrationloginwebapp.model.RoleEnum;
 import com.example.registrationloginwebapp.model.User;
 import com.example.registrationloginwebapp.repository.RoleRepository;
 import com.example.registrationloginwebapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceCrudImpl implements UserServiceCrud {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserServiceCrudImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
     }
 
     @Override
-    public boolean save(User user) {
-        //TODO check email in usecase
-        if (userRepository.existsByEmail(user.getEmail())) return false;
+    public User save(User user) {
+        if (user == null) throw new NullPointerException();
 
-        userRepository.save(user);
-        return true;
+        return userRepository.save(user);
     }
 
     @Override
     public boolean update(User user) {
+        if (user == null) throw new NullPointerException();
+
         return false;
     }
 
     @Override
     public boolean delete(User user) {
+        if (user == null) throw new NullPointerException();
+
         if (userRepository.existsByEmail(user.getEmail())) {
             userRepository.delete(user);
             return true;
@@ -45,18 +43,7 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    public void setRoles(User user, List<Role> roles) {
-        user.setRoles(roles);
-    }
 
-    public User transformDtoIntoUser(UserDto userDto) {
-        return new User(userDto.getFirstName(),
-                userDto.getLastName(),
-                userDto.getEmail(),
-                userDto.getPassword(),
-                userDto.getConfirmedPassword()
-        );
-    }
 
     public List<User> getUsers(){
         return userRepository.findAll();

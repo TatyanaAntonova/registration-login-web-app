@@ -13,16 +13,16 @@ public class RoleServiceImpl implements RoleService {
 
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
-
     }
+
+
 
     public List<Role> getRoles() {
         return roleRepository.findAll();
     }
 
-    public void setDefaultRoles() {
-        roleRepository.save(new Role(RoleEnum.GUEST, "guest rights"));
-        roleRepository.save(new Role(RoleEnum.ADMIN, "admin rights"));
+    public Role getGuestRole(){
+        return null;
     }
 
     //TODO save, update, delete

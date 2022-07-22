@@ -36,6 +36,7 @@ public class User {
     @Transient
     private String confirmedPassword;
 
+    @NonNull
     @ManyToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "users_id"),

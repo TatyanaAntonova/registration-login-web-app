@@ -2,18 +2,17 @@ package com.example.registrationloginwebapp.bootstrap;
 
 import com.example.registrationloginwebapp.dto.UserDto;
 import com.example.registrationloginwebapp.model.User;
-import com.example.registrationloginwebapp.service.RoleService;
 import com.example.registrationloginwebapp.service.RoleServiceImpl;
-import com.example.registrationloginwebapp.service.UserServiceImpl;
+import com.example.registrationloginwebapp.service.UserServiceCrudImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
-    private final UserServiceImpl userServiceImpl;
+    private final UserServiceCrudImpl userServiceImpl;
     private final RoleServiceImpl roleServiceIml;
 
-    public BootStrapData(UserServiceImpl userServiceImpl, RoleServiceImpl roleService) {
+    public BootStrapData(UserServiceCrudImpl userServiceImpl, RoleServiceImpl roleService) {
         this.userServiceImpl = userServiceImpl;
         this.roleServiceIml = roleService;
     }
@@ -22,10 +21,7 @@ public class BootStrapData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("Starting in BootStrap");
 
-        System.out.println("----------------- Download roles into repo");
-        roleServiceIml.setDefaultRoles();
-        System.out.println("There are " + roleServiceIml.getRoles().size() + " roles in repo.");
-
+/*
         System.out.println("----------------- Create DTO taken from web");
         UserDto userDto = new UserDto("Ivan", "Petrov", "email", "password123", "password123");
         UserDto userDto2 = new UserDto("Ivan", "Petrov", "email1", "password123", "password123");
@@ -49,7 +45,7 @@ public class BootStrapData implements CommandLineRunner {
         if (userServiceImpl.delete(user3)) System.out.println("User was deleted successfully!");
 
         System.out.println("There is/are " + userServiceImpl.getUsers().size() + " user/users in repo.");
-
+*/
         /*
         SELECT * FROM ROLES;
         SELECT * FROM USERS;
