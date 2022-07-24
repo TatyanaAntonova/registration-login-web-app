@@ -1,8 +1,8 @@
 package com.example.registrationloginwebapp.config;
 
-import com.example.registrationloginwebapp.model.Role;
-import com.example.registrationloginwebapp.model.RoleEnum;
-import com.example.registrationloginwebapp.repository.RoleRepository;
+import com.example.registrationloginwebapp.models.Role;
+import com.example.registrationloginwebapp.models.RoleEnum;
+import com.example.registrationloginwebapp.repositories.RoleRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +27,4 @@ public class LoadDataBase {
             log.info(roleRepository.count() + " roles was uploaded into repo.");
         };
     }
-
-
 }

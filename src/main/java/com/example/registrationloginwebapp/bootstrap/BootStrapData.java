@@ -1,43 +1,46 @@
 package com.example.registrationloginwebapp.bootstrap;
 
-import com.example.registrationloginwebapp.dto.UserDto;
-import com.example.registrationloginwebapp.model.User;
-import com.example.registrationloginwebapp.service.RoleServiceImpl;
-import com.example.registrationloginwebapp.service.UserServiceCrudImpl;
+import com.example.registrationloginwebapp.models.dtos.UserDto;
+import com.example.registrationloginwebapp.models.User;
+import com.example.registrationloginwebapp.services.role.RoleService;
+import com.example.registrationloginwebapp.services.user.UserServiceCrud;
+import com.example.registrationloginwebapp.services.user.UserServiceTransformDtoIntoUser;
+import com.example.registrationloginwebapp.usecases.UserSignUpUseCase;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
-    private final UserServiceCrudImpl userServiceImpl;
-    private final RoleServiceImpl roleServiceIml;
+    private final UserServiceCrud userService;
+    private final RoleService roleService;
+    private final UserServiceTransformDtoIntoUser transformDtoIntoUser;
+    private final UserSignUpUseCase userSignUpUseCase;
+    private final UserServiceCrud userServiceCrud;
 
-    public BootStrapData(UserServiceCrudImpl userServiceImpl, RoleServiceImpl roleService) {
-        this.userServiceImpl = userServiceImpl;
-        this.roleServiceIml = roleService;
+    public BootStrapData(UserServiceCrud userService, RoleService roleService, UserServiceTransformDtoIntoUser transformDtoIntoUser, UserSignUpUseCase userSignUpUseCase, UserServiceCrud userServiceCrud) {
+        this.userService = userService;
+        this.roleService = roleService;
+        this.transformDtoIntoUser = transformDtoIntoUser;
+        this.userSignUpUseCase = userSignUpUseCase;
+        this.userServiceCrud = userServiceCrud;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Starting in BootStrap");
+      /*  System.out.println("Starting in BootStrap");
 
-/*
         System.out.println("----------------- Create DTO taken from web");
         UserDto userDto = new UserDto("Ivan", "Petrov", "email", "password123", "password123");
-        UserDto userDto2 = new UserDto("Ivan", "Petrov", "email1", "password123", "password123");
-        UserDto userDto3 = new UserDto("Ivan", "Petrov", "email111", "password123", "password123");
 
         System.out.println("----------------- Transform DTO into User");
-        User user = userServiceImpl.transformDtoIntoUser(userDto);
-        User user2 = userServiceImpl.transformDtoIntoUser(userDto2);
-        User user3 = userServiceImpl.transformDtoIntoUser(userDto3);
+        User user = transformDtoIntoUser.transformDtoIntoUser(userDto);
 
         System.out.println("----------------- Download Users into repo");
-        userServiceImpl.save(user);
-        user2.setRoles(roleServiceIml.getRoles());
-        userServiceImpl.save(user2);
-        userServiceImpl.save(user2);
-
+        System.out.println(userSignUpUseCase.signUpUser(userDto));
+        System.out.println(userSignUpUseCase.signUpUser(userDto));
+        System.out.println(userSignUpUseCase.signUpUser(null));
+*/
+/*
         System.out.println("There is/are " + userServiceImpl.getUsers().size() + " user/users in repo.");
 
         System.out.println("----------------- Delete User from repository");
