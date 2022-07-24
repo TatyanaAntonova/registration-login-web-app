@@ -7,5 +7,5 @@ public interface UserServiceCrud {
 
     boolean update(User user);
 
-    boolean delete(User user);
+    void delete(User user);
 }

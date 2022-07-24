@@ -29,18 +29,15 @@ public class UserServiceCrudImpl implements UserServiceCrud {
     }
 
     @Override
-    public boolean delete(User user) {
+    public void delete(User user) {
         if (user == null) throw new NullPointerException();
 
         if (userRepository.existsByEmail(user.getEmail())) {
             userRepository.delete(user);
-            return true;
         }
-
-        return false;
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userRepository.findAll();
     }
 }

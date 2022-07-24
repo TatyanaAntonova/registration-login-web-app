@@ -8,8 +8,6 @@ import com.example.registrationloginwebapp.services.exceptions.UserAlreadyExists
 import com.example.registrationloginwebapp.services.role.RoleService;
 import com.example.registrationloginwebapp.services.user.*;
 
-import java.net.UnknownServiceException;
-
 public class UserSignUpUseCaseImpl implements UserSignUpUseCase {
     private final UserServiceTransformDtoIntoUser transformDtoIntoUser;
     private final UserServiceCheckUserAlreadyExists checkUserAlreadyExists;
