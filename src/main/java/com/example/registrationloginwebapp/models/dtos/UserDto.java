@@ -1,14 +1,9 @@
 package com.example.registrationloginwebapp.models.dtos;
 
-import com.example.registrationloginwebapp.services.validators.Matches;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import com.example.registrationloginwebapp.validators.Matches;
+import lombok.*;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 @Data
 @RequiredArgsConstructor
@@ -25,12 +20,12 @@ public class UserDto {
 
     @NonNull
     @NotEmpty(message = "Email must not be empty.")
-    @Email
+    @Email(message = "Email should be valid")
     private String email;
 
     @NonNull
-   // @NotEmpty(message = "Password must not be empty.")
-    @Min(message = "Password must be more than 10 symbols.", value = 10)
+    @NotEmpty(message = "Password must not be empty.")
+    @Size(min = 10, message = "Password must be more than 10 symbols.")
     private String password;
 
     @NonNull

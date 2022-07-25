@@ -1,4 +1,4 @@
-package com.example.registrationloginwebapp.services.exceptions;
+package com.example.registrationloginwebapp.exceptions;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String email){

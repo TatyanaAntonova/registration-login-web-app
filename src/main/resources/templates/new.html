@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Add new page to the CMS web application."/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../static/css/welcome.css"
+          th:href="@{/css/welcome.css}"/>
+    <title>Sign Up</title>
+</head>
+
+<body>
+
+<div class="vertical-menu">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/new">New page</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</div>
+
+<div class="body">
+    <p/><h2>Create new page</h2>
+
+    <form method="post" th:action="@{/registration}" th:object="${userDto}">
+        <label for="firstName">First Name</label><br/>
+        <input class="input" type="text" th:field="*{firstName}" id="firstName"/><br/>
+        <div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</div><br/>
+
+        <label for="lastName">Last Name</label><br/>
+        <input class="input" type="text" th:field="*{lastName}" id="lastName"/><br/>
+        <div class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</div><br/>
+
+        <label for="email">Email:</label><br/>
+        <input class="input" type="text" th:field="*{email}" id="email"/><br/>
+        <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div><br/>
+
+        <label for="password">Password:</label><br/>
+        <input class="input" type="text" th:field="*{password}" id="password"/><br/>
+        <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div><br/>
+
+        <label for="confirmedPassword">Confirmed Password:</label><br/>
+        <input class="input" type="text" th:field="*{confirmedPassword}" id="confirmedPassword"/><br/>
+        <div class="error" th:if="${#fields.hasErrors('confirmedPassword')}" th:errors="*{confirmedPassword}">Confirmed Password Error</div><br/>
+
+        <input type="submit" value="Create!"/>
+    </form>
+</div>
+
+</body>
+</html>

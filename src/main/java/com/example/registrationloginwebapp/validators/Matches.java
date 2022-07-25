@@ -1,4 +1,4 @@
-package com.example.registrationloginwebapp.services.validators;
+package com.example.registrationloginwebapp.validators;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

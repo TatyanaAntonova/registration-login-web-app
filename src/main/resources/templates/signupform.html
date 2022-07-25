@@ -11,7 +11,7 @@
 <body>
 
 <!-- Create navigation bar (header) -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed"
@@ -27,7 +27,7 @@
 </nav>
 <br>
 <br>
-
+-->
 <!-- Create HTML registration form -->
 <div class="container">
     <div class="row">
@@ -40,10 +40,10 @@
 -->
             <h1>Registration</h1>
 
-            <form method="post" th:action="@{/registration}"  th:object="${userDto}">
+            <form method="post" th:action="@{/registration}" th:object="${userDto}">
                 <div class="form-group">
                     <label class="control-label" for="firstName">First Name</label>
-                    <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus">
+                    <input id="firstName" class="form-control"  th:field="*{firstName}" required autofocus="autofocus">
                     <div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div><br/>
 
                     <label class="control-label" for="lastName">Last Name</label>

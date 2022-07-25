@@ -32,9 +32,6 @@ public class User {
     @NonNull
     private String password;
 
-    @Transient
-    private boolean confirmedPassword = false;
-
     @NonNull
     @ManyToMany
     @JoinTable(name = "users_roles",
