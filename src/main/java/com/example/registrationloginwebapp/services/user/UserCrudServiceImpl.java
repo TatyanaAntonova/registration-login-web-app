@@ -27,6 +27,8 @@ public class UserCrudServiceImpl implements CrudService<User, Long> {
     public User findById(Long aLong) {
         return null;
     }
+
+    //TODO NEW METHOD
     public boolean findByEmail(String email) {
         return userRepository.existsByEmail(email);
     }

@@ -4,16 +4,18 @@ import com.example.registrationloginwebapp.models.dtos.UserDto;
 import com.example.registrationloginwebapp.models.User;
 import com.example.registrationloginwebapp.services.user.UserCrudServiceImpl;
 import com.example.registrationloginwebapp.services.user.UserServiceTransformDtoIntoUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserSignUpUseCaseImpl implements UserSignUpUseCase {
-    // TODO ЕСЛИ ИСПОЛЬЗОВАТЬ ИНТЕРФЕЙС CrudService + @QUALIFIED("user"), бин класса находит,
-    // но метод по поиску имейла не видит
+    private static final Logger log = LoggerFactory.getLogger(UserSignUpUseCaseImpl.class);
     private final UserCrudServiceImpl userCrudService;
     private final UserServiceTransformDtoIntoUser transformDtoIntoUser;
 
-    public UserSignUpUseCaseImpl(UserCrudServiceImpl userCrudService, UserServiceTransformDtoIntoUser transformDtoIntoUser) {
+    public UserSignUpUseCaseImpl(UserCrudServiceImpl userCrudService,
+                                 UserServiceTransformDtoIntoUser transformDtoIntoUser) {
         this.userCrudService = userCrudService;
         this.transformDtoIntoUser = transformDtoIntoUser;
     }
@@ -34,11 +36,11 @@ public class UserSignUpUseCaseImpl implements UserSignUpUseCase {
         String checkEmail = userDto.getEmail();
 
         if (!userCrudService.findByEmail(checkEmail)) {
-            System.out.println("Not found such email: " + checkEmail);
-
             user = transformDtoIntoUser.transformDtoIntoUser(userDto);
             userCrudService.save(user);
-            System.out.println(user + " was signed up successfully!");
+            log.info("User with email \"" + user.getEmail() + "\" signed up successfully.");
+        } else {
+            log.info("User with email \"" + user.getEmail() + "\" already exists!");
         }
 
         //TODO return null is bad practice

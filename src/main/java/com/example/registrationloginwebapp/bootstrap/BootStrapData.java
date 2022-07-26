@@ -9,10 +9,5 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*
-        SELECT * FROM ROLES;
-        SELECT * FROM USERS;
-        SELECT * FROM USERS_ROLES;
-         */
     }
 }

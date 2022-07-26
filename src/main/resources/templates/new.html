@@ -22,7 +22,7 @@
 <div class="body">
     <p/><h2>Create new page</h2>
 
-    <form method="post" th:action="@{/registration}" th:object="${userDto}">
+    <form method="post" th:action="@{/registration}" th:object="${user}">
         <label for="firstName">First Name</label><br/>
         <input class="input" type="text" th:field="*{firstName}" id="firstName"/><br/>
         <div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</div><br/>

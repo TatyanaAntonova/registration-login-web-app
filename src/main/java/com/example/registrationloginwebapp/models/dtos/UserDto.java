@@ -1,14 +1,15 @@
 package com.example.registrationloginwebapp.models.dtos;
 
-import com.example.registrationloginwebapp.validators.Matches;
+import com.example.registrationloginwebapp.validators.FieldsValueMatch;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.*;
 
+@Component
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
-@Matches(field = "password", verifyField = "confirmedPassword")
 public class UserDto {
     @NonNull
     @NotEmpty(message = "First name must not be empty.")
@@ -25,10 +26,11 @@ public class UserDto {
 
     @NonNull
     @NotEmpty(message = "Password must not be empty.")
-    @Size(min = 10, message = "Password must be more than 10 symbols.")
+    @Size(min = 10, max = 50, message = "Password must be more than 10 symbols.")
     private String password;
 
     @NonNull
-    @NotEmpty
+    @NotEmpty(message = "Confirmed Password must not be empty.")
+    //@FieldsValueMatch(field = "password", fieldMatch = "confirmedPassword", message = "Passwords do not match!")
     private String confirmedPassword;
 }

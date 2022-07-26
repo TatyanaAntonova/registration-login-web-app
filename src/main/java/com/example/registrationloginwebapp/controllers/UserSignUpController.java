@@ -1,24 +1,21 @@
 package com.example.registrationloginwebapp.controllers;
 
-
-import com.example.registrationloginwebapp.bootstrap.DataLoader;
-import com.example.registrationloginwebapp.exceptions.NotFoundException;
 import com.example.registrationloginwebapp.models.dtos.UserDto;
 import com.example.registrationloginwebapp.usecases.UserSignUpUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserSignUpController {
-    private static final Logger log = LoggerFactory.getLogger(DataLoader.class);
+    private static final Logger log = LoggerFactory.getLogger(UserSignUpController.class);
 
     private final UserSignUpUseCase userSignUpUseCase;
 
@@ -26,18 +23,22 @@ public class UserSignUpController {
         this.userSignUpUseCase = userSignUpUseCase;
     }
 
-
-    @RequestMapping({"/", "", "/sign-up"})
-    public String signUpForm(Model model) {
-        model.addAttribute("userDto", new UserDto());
-        //return "signupform";
+    @GetMapping({"/", "", "/sign-up"})
+    public String signUpForm(@ModelAttribute("user") UserDto userDto) {
         return "new";
     }
 
     @PostMapping("/registration")
-    public String registerUserAccount(@ModelAttribute("userDto") @Valid UserDto userDto,
+    public String registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto,
                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+
+            log.error("UserDto Problem.");
+            for (FieldError fieldError : fieldErrors) {
+                log.error("errors --"+fieldError.getField()+fieldError.getDefaultMessage());
+            }
+
             return "new";
         }
 
@@ -45,6 +46,8 @@ public class UserSignUpController {
         return "redirect:";
     }
 
+
+/*
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFound(Exception exception) {
@@ -58,6 +61,6 @@ public class UserSignUpController {
         modelAndView.addObject("exception", exception);
 
         return modelAndView;
-    }
+    }*/
 
 }

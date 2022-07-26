@@ -1,6 +1,7 @@
 package com.example.registrationloginwebapp.config;
 
 import com.example.registrationloginwebapp.repositories.UserRepository;
+import com.example.registrationloginwebapp.services.CrudService;
 import com.example.registrationloginwebapp.services.role.RoleCrudServiceImpl;
 import com.example.registrationloginwebapp.services.user.UserCrudServiceImpl;
 import org.springframework.context.annotation.Bean;

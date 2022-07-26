@@ -20,7 +20,8 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Start load DB.");
-        log.info("Preloading " + roleService.save(new Role(RoleEnum.GUEST, "guest rights")));
-        log.info("Preloading " + roleService.save(new Role(RoleEnum.ADMIN, "admin rights")));
+        log.info("Preloading " + roleService.save(new Role(RoleEnum.GUEST, "Guest rights")));
+        log.info("Preloading " + roleService.save(new Role(RoleEnum.USER, "User rights")));
+        log.info("Preloading " + roleService.save(new Role(RoleEnum.ADMIN, "Admin rights")));
     }
 }
