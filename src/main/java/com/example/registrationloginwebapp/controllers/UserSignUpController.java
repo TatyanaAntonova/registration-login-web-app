@@ -21,7 +21,7 @@ public class UserSignUpController {
         this.userSignUpUseCase = userSignUpUseCase;
     }
 
-    @GetMapping({"/", "", "/sign-up"})
+    @GetMapping({"/", "/sign-up"})
     public String signUpForm(@ModelAttribute("user") UserDto userDto) {
         return "signupform";
     }
