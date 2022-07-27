@@ -1,6 +1,6 @@
 package com.example.registrationloginwebapp.usecases;
 
-import com.example.registrationloginwebapp.models.dtos.UserDto;
+import com.example.registrationloginwebapp.models.UserDto;
 import com.example.registrationloginwebapp.models.User;
 import com.example.registrationloginwebapp.services.user.UserCrudServiceImpl;
 import com.example.registrationloginwebapp.services.user.UserServiceTransformDtoIntoUser;

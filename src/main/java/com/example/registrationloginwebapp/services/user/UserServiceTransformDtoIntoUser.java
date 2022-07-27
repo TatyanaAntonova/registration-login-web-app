@@ -1,6 +1,6 @@
 package com.example.registrationloginwebapp.services.user;
 
-import com.example.registrationloginwebapp.models.dtos.UserDto;
+import com.example.registrationloginwebapp.models.UserDto;
 import com.example.registrationloginwebapp.models.User;
 
 public interface UserServiceTransformDtoIntoUser {

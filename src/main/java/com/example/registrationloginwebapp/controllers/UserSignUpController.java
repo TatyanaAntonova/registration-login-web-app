@@ -1,6 +1,6 @@
 package com.example.registrationloginwebapp.controllers;
 
-import com.example.registrationloginwebapp.models.dtos.UserDto;
+import com.example.registrationloginwebapp.models.UserDto;
 import com.example.registrationloginwebapp.usecases.UserSignUpUseCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.List;
 @Controller
 public class UserSignUpController {
     private static final Logger log = LoggerFactory.getLogger(UserSignUpController.class);
-
     private final UserSignUpUseCase userSignUpUseCase;
 
     public UserSignUpController(UserSignUpUseCase userSignUpUseCase) {
@@ -25,7 +23,7 @@ public class UserSignUpController {
 
     @GetMapping({"/", "", "/sign-up"})
     public String signUpForm(@ModelAttribute("user") UserDto userDto) {
-        return "new";
+        return "signupform";
     }
 
     @PostMapping("/registration")
@@ -36,16 +34,20 @@ public class UserSignUpController {
 
             log.error("UserDto Problem.");
             for (FieldError fieldError : fieldErrors) {
-                log.error("errors --"+fieldError.getField()+fieldError.getDefaultMessage());
+                log.error("errors --" + fieldError.getField() + fieldError.getDefaultMessage());
             }
 
-            return "new";
+            return "signupform";
         }
 
         userSignUpUseCase.signUpUser(userDto);
-        return "redirect:";
+        return "redirect:welcome";
     }
 
+    @GetMapping("/welcome")
+    public String welcomePage() {
+        return "welcome";
+    }
 
 /*
     @ResponseStatus(HttpStatus.NOT_FOUND)

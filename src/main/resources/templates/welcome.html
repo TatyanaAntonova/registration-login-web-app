@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="Welcome page" content="Page after successful registration/login."/>
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/welcome.css"
+          th:href="@{/css/welcome.css}"/>
+    <title>Welcome</title>
+</head>
+
+<body>
+
+<div class="vertical-menu">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a class="active" href="/new">New user</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</div>
+
+<div>
+    <img class="welcome-image" th:src="@{/images/welcome.png}" width="200" height="100">
+</div>
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.example.registrationloginwebapp.models.dtos;
+package com.example.registrationloginwebapp.models;
 
 import com.example.registrationloginwebapp.validators.FieldsValueMatch;
 import lombok.*;
@@ -29,6 +29,7 @@ public class UserDto {
     @Size(min = 10, max = 50, message = "Password must be more than 10 symbols.")
     private String password;
 
+    //TODO validate confirmed password field
     @NonNull
     @NotEmpty(message = "Confirmed Password must not be empty.")
     //@FieldsValueMatch(field = "password", fieldMatch = "confirmedPassword", message = "Passwords do not match!")

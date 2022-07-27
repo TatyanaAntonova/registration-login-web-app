@@ -1,11 +1,11 @@
 package com.example.registrationloginwebapp.services.user;
 
 import com.example.registrationloginwebapp.models.Role;
-import com.example.registrationloginwebapp.models.dtos.UserDto;
+import com.example.registrationloginwebapp.models.Status;
+import com.example.registrationloginwebapp.models.UserDto;
 import com.example.registrationloginwebapp.models.User;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 
 @Service
 public class UserServiceTransformDtoIntoUserImpl implements UserServiceTransformDtoIntoUser {
@@ -17,11 +17,12 @@ public class UserServiceTransformDtoIntoUserImpl implements UserServiceTransform
 
         if (confirmedPassword) {
             return new User(
+                    userDto.getEmail(),
                     userDto.getFirstName(),
                     userDto.getLastName(),
-                    userDto.getEmail(),
                     userDto.getPassword(),
-                    new ArrayList<Role>()
+                    Role.USER,
+                    Status.ACTIVE
             );
         }
 

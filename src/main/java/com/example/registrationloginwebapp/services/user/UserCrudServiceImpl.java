@@ -56,6 +56,4 @@ public class UserCrudServiceImpl implements CrudService<User, Long> {
     public void deleteById(Long aLong) {
 
     }
-
-
 }

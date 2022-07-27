@@ -11,6 +11,12 @@ body {
     margin: 0;
 }
 
+.welcome-image{
+    padding: 25px;
+    margin-left: 260px;
+    position: inherit;
+}
+
 .vertical-menu {
     width: 200px;
 }
