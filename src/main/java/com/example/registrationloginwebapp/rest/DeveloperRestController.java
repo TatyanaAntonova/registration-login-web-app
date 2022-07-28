@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/api/developers")
+@RequestMapping("/api")
 public class DeveloperRestController {
 
     private List<Developer> developers = Stream.of(
@@ -17,13 +17,13 @@ public class DeveloperRestController {
             new Developer(3L, "Petr", "Petrov")
     ).collect(Collectors.toList());
 
-    @GetMapping
+    @GetMapping("/developers")
     public List<Developer> getAll() {
         return developers;
     }
 
     @GetMapping("/{id}")
-    //@PreAuthorize("hasAuthority('developers:read')")
+    @PreAuthorize("hasAuthority('developers:read')")
     public Developer getById(@PathVariable Long id) {
         return developers.stream()
                 .filter(developer -> developer.getId().equals(id))
@@ -32,14 +32,15 @@ public class DeveloperRestController {
     }
 
     @PostMapping()
+    @PreAuthorize("hasAuthority('developers:write')")
     public Developer create(@RequestBody Developer developer) {
         developers.add(developer);
         return developer;
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('developers:write')")
     public void deleteById(@PathVariable Long id) {
         developers.removeIf(developer -> developer.getId().equals(id));
     }
-
 }
