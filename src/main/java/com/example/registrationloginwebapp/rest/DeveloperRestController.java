@@ -1,5 +1,6 @@
 package com.example.registrationloginwebapp.rest;
 
+import com.example.registrationloginwebapp.models.Developer;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

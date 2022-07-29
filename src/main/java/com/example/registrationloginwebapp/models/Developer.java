@@ -1,4 +1,4 @@
-package com.example.registrationloginwebapp.rest;
+package com.example.registrationloginwebapp.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
